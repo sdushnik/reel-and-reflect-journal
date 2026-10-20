@@ -53,12 +53,12 @@ function memoryStorage(): Storage {
 }
 
 function serverValidate(input: MovieInput) {
-  const e: Record<string, string> = {};
+  const e: Partial<Record<"title" | "watchedAt" | "rating", string>> = {};
   if (!input.title?.trim()) e.title = "Title is required.";
   if (!isValidIsoDate(input.watchedAt)) e.watchedAt = "Enter a valid date.";
   if (!Number.isInteger(input.rating) || input.rating < 1 || input.rating > 5)
     e.rating = "Rating must be between 1 and 5.";
-  if (Object.keys(e).length) throw new ApiError("VALIDATION", "Invalid movie entry.", e);
+  if (Object.keys(e).length) throw new ApiError("VALIDATION", "Invalid movie entry.", e as Record<string, string>);
 }
 
 function seedEntries(): (MovieInput & { createdOffset: number })[] {

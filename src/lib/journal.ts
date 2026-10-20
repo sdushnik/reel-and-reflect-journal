@@ -73,7 +73,8 @@ export function computeStats(entries: MovieEntry[], now = new Date(), months = 1
   const idx = new Map(monthly.map((m, i) => [m.key, i]));
   for (const e of entries) {
     const i = idx.get(format(parseISO(e.watchedAt), "yyyy-MM"));
-    if (i !== undefined) monthly[i].count++;
+    const slot = i === undefined ? undefined : monthly[i];
+    if (slot) slot.count++;
   }
 
   const topRated = [...entries]

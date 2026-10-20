@@ -23,7 +23,7 @@ export function toFormValues(e?: MovieEntry): MovieFormValues {
   };
 }
 
-function Err({ id, msg }: { id: string; msg?: string }) {
+function Err({ id, msg }: { id: string; msg?: string | undefined }) {
   return msg ? (
     <p id={id} className="text-sm text-destructive" role="alert">
       {msg}
