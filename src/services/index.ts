@@ -1,9 +1,4 @@
 // Single entry point for every backend call in the app.
-// To use a real backend, implement `ReplayApi` (see ./types) and export it here.
-import { createMockApi } from "./mock";
-import type { ReplayApi } from "./types";
-
-export const api: ReplayApi = createMockApi();
-
+export { api } from "./api";
 export * from "./types";
 export * from "./queries";

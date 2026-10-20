@@ -1,5 +1,5 @@
 import { queryOptions } from "@tanstack/react-query";
-import { api } from "./index";
+import { api } from "./api";
 
 export const keys = {
   me: ["me"] as const,

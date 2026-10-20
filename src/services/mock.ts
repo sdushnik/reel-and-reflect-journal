@@ -61,8 +61,6 @@ function serverValidate(input: MovieInput) {
   if (Object.keys(e).length) throw new ApiError("VALIDATION", "Invalid movie entry.", e);
 }
 
-const SEED: Omit<MovieInput, "quotes">[] & { quotes?: string[] }[] = [];
-
 function seedEntries(): (MovieInput & { createdOffset: number })[] {
   const m = (n: number, d: number) => {
     const t = new Date();
@@ -75,11 +73,10 @@ function seedEntries(): (MovieInput & { createdOffset: number })[] {
     { title: "Paddington 2", releaseYear: 2017, genre: "Comedy", watchedAt: m(1, 2), rating: 4, review: "Pure kindness, perfectly engineered.", quotes: ["If we're kind and polite, the world will be right."], posterUrl: null, createdOffset: 3 },
     { title: "Heat", releaseYear: 1995, genre: "Thriller", watchedAt: m(3, 20), rating: 4, review: null, quotes: [], posterUrl: null, createdOffset: 4 },
     { title: "Spirited Away", releaseYear: 2001, genre: "Animation", watchedAt: m(5, 9), rating: 5, review: "Still the gold standard of wonder.", quotes: ["Once you've met someone you never really forget them."], posterUrl: null, createdOffset: 5 },
-    { title: "The Lighthouse", releaseYear: 2019, genre: "Horror", watchedAt: m(7, 30 > 28 ? 27 : 30), rating: 3, review: "Admired more than enjoyed.", quotes: [], posterUrl: null, createdOffset: 6 },
+    { title: "The Lighthouse", releaseYear: 2019, genre: "Horror", watchedAt: m(7, 27), rating: 3, review: "Admired more than enjoyed.", quotes: [], posterUrl: null, createdOffset: 6 },
     { title: "Past Lives", releaseYear: 2023, genre: "Drama", watchedAt: m(8, 11), rating: 4, review: "Quiet, devastating, generous.", quotes: [], posterUrl: null, createdOffset: 7 },
   ];
 }
-void SEED;
 
 export function createMockApi(opts: MockOptions = {}): ReplayApi {
   const storage =
